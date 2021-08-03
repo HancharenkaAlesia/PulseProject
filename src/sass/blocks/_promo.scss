@@ -49,13 +49,9 @@
         font-weight: 500;
         text-align: right;
         color: #ffffff;
-        a{
+        a {
             color: #ffffff;
-            &:hover {
-                color: #ffffff;
-                text-decoration: none;   
-                text-decoration: underline;  
-            }
+            text-decoration: underline;  
         }
     }
 }
