@@ -1,0 +1,37 @@
+.catalog {
+    margin-bottom: 103px;
+    &__tabs {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 69px;
+    }
+    &__tab {
+        width: 220px;
+        height: 50px;
+        margin: 0 5px;
+        border: solid 2px #d0d0d0;
+        list-style: none;
+        transform: skewX(-25deg);
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 48px;
+        text-align: center;
+        color: #6b6b6b;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: 0.5s all;
+        &_active {
+            background-color: $main-color;
+            border: none;
+            color: #fff;
+        }
+        &:hover {
+            box-shadow: 0 0 15px 5px rgba(199, 1, 1, 0.5);
+            border: none;
+        }
+    }
+    &__btn {
+        transform: skewX(25deg);
+    }
+}
