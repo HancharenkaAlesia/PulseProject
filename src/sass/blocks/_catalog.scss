@@ -34,4 +34,65 @@
     &__btn {
         transform: skewX(25deg);
     }
+
+    &__content {
+        .card-item {
+            width: 300px;
+            min-height: 440px;
+            border: solid 2px #e8e8e8;
+            &__img {
+                display: block; 
+                margin: 20px auto;
+                width: 140px;
+                height: 200px;   
+            }
+            &__subheader {
+                font-size: 16px;
+                font-weight: bold;
+                text-align: center;
+                color: #0d0d0d;
+            }
+            &__descr {
+                margin-top: 16px;
+                font-size: 14px;
+                font-weight: 300;
+                text-align: center;
+                color: #0d0d0d;
+            }
+            hr {
+                width: 260px;
+                height: 1px;
+                background-color: #e8e8e8;
+            }
+            &__link {
+                display:block;
+                margin-top: 17px;
+                margin-bottom: 19px;
+                text-align: center;
+                font-size: 14px;
+                font-weight: 500;
+                color: $main-color;
+                text-decoration: underline;
+            }
+            &__footer {
+                margin: 21px 20px 20px 26px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            &__price {
+                &_small {
+                    font-size: 14px;
+                    font-weight: 300;
+                    color: #555;
+                    text-decoration: line-through;
+                }
+                &_big {
+                    font-size: 20px;
+                    font-weight: bold;
+                    color: #050505;
+                }
+            }
+        }
+    }
 }
