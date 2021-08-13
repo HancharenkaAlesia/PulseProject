@@ -9,37 +9,100 @@
     &__tab {
         width: 220px;
         height: 50px;
-        margin: 0 5px;
-        border: solid 2px #d0d0d0;
         list-style: none;
-        transform: skewX(-25deg);
-        font-size: 18px;
-        font-weight: 500;
-        line-height: 48px;
-        text-align: center;
+        border: 2px solid #d0d0d0;
         color: #6b6b6b;
+        font-size: 18px;
+        font-weight: 400;
         text-transform: uppercase;
+        text-align: center;
+        line-height: 48px;
+        transform: skewX(-25deg);
+        margin: 0 5px;
         cursor: pointer;
         transition: 0.5s all;
         &_active {
+            color: #fff;
             background-color: $main-color;
             border: none;
-            color: #fff;
         }
         &:hover {
-            box-shadow: 0 0 15px 5px rgba(199, 1, 1, 0.5);
+            box-shadow: 3px 3px 20px $main-color;
             border: none;
         }
-    }
-    &__btn {
-        transform: skewX(25deg);
+        div {
+            
+            transform: skewX(25deg);
+        }
     }
 
     &__content {
+        display: none;
+        &_active {
+            display: flex;
+            flex-wrap: wrap;
+        }
         .card-item {
             width: 300px;
             min-height: 440px;
+            margin-left: 6px;
+            margin-bottom: 10px;
             border: solid 2px #e8e8e8;
+            overflow: hidden;
+            &__wrapper {
+                display: flex;
+                width: calc(200% + 40px);
+            }
+            &__main {
+                width: 50%;
+                margin-right: 0px;
+                transform: translateX(-100%);
+                transition: 1s all;
+                &_active {
+                    transform: translateX(0%);
+                    margin-right: 20px;
+                }
+            }
+            &__details {
+                position: relative;
+                width: 50%;
+                margin-left: 20px;
+                transform: translateX(0%);
+                padding-right: 40px;
+                transition: 1s all;
+                padding-left: 0px;
+                margin-bottom: 0;
+                list-style-type: none;
+                &_active {
+                    transform: translateX(-100%);
+                    margin-left: 0px;
+                }
+            }
+            &__list {
+                position: relative;
+                height: 100%;
+                list-style-type: none;
+                padding-left: 39px;
+                li {
+                    position: relative;
+                    margin-top: 18px;
+                    font-size: 14px;
+                    font-weight: 300;
+                    line-height: normal;
+                    text-align: left;
+                    color: #555;
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        left: -18px;
+                        top: 7px;
+                        width: 5px;
+                        height: 5px;
+                        background-color: $main-color;
+                    }
+                }
+            }
+
             &__img {
                 display: block; 
                 margin: 20px auto;
@@ -73,6 +136,25 @@
                 font-weight: 500;
                 color: $main-color;
                 text-decoration: underline;
+                &:hover {
+                    color: $main-color;
+                }
+            }
+            &__back {
+                position: absolute;
+                bottom: 37px;
+                left: 60%;
+                transform: translateX(calc(-50% - 19px));
+                display: block;
+                color: $main-color;
+                font-size: 14px;
+                font-weight: 500;
+                text-decoration: underline;
+                text-transform: uppercase;
+                &:hover {
+                    color: $main-color;
+                }
+
             }
             &__footer {
                 margin: 21px 20px 20px 26px;
