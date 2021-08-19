@@ -10,8 +10,16 @@
     text-transform: uppercase;
     text-align: center;
     color: #ffffff;
+    transition: 0.5s all;
     &:hover {
         cursor: pointer;
+        box-shadow: 7px 3px 15px rgba(0, 0, 0, 0.7);
+    }
+    &:active {
+        background-color: #8E120F;
+    }
+    &:focus {
+        outline: none;
     }
     &_main {
         width: 300px;
@@ -24,10 +32,18 @@
         height: 55px;
         margin-top: 20px;
         font-size: 16px;
+        &:hover {
+            cursor: pointer;
+            box-shadow: 7px 3px 15px rgba(255, 255, 255, 0.4);
+        }
     }
     &_card-item {
         width: 131px;
         height: 40px;
         font-size: 14px;
+        &:hover {
+            cursor: pointer;
+            box-shadow: 4px 3px 15px rgba(0, 0, 0, 0.7);
+        }
     }
 }
