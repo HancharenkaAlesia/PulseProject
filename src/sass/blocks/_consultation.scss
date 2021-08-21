@@ -10,6 +10,12 @@
         line-height: normal;
         color: #fff;
     }
+    input {
+        &:focus{
+            outline-color: #D4D2D2;
+            outline-width: 1px;
+        }
+    }
     form {
         label.error {
             border: none;
@@ -17,6 +23,15 @@
             font-size: 14px;
             font-weight: 300;
             color: #fff;
+        }
+        .error {
+            border: 1px solid red;
+        }
+        input.error {
+            &:focus {
+                outline-color: red;
+                outline-width: 1px;  
+            }
         }
     }
 }

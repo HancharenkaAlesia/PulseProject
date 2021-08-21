@@ -68,49 +68,41 @@ const promoWrapper = document.querySelector('.promo'),
       catalog = document.querySelector('.catalog'),
       modalConsultation = document.querySelector('#consultation'),
       modalOrder = document.querySelector('#order'),
-      modalThanks = document.querySelector('#thanks'),
-      btnConsultation = document.querySelector('#consultation-form').querySelector('button');
+      modalThanks = document.querySelector('#thanks');
 
+      function showModal(modal) {
+            overlay.classList.add('show');
+            modal.classList.add('show');       
+      }
+
+      function closeModal(modal) {
+            overlay.classList.remove('show');
+            modal.classList.remove('show');
+      }
+      
         //открывает модалку на промо
       promoWrapper.addEventListener('click', (e) => {
         if (e.target && e.target.tagName == "BUTTON") {
-            overlay.style.display = 'block';
-            modalConsultation.style.display = 'block'; }
-        
-        document.body.style.overflow = 'hidden';
+            showModal(modalConsultation); 
+        }
       });
-
-      //событие на кнопку заказать консультацию
-/*       btnConsultation.addEventListener('click', () => {
-                overlay.style.display = 'block';
-                modalThanks.style.display = 'block'; 
-                document.body.style.overflow = 'hidden';
-        }); */
 
         // срабатывет на кнопке купить
       catalog.addEventListener('click', (e) => {
         if (e.target && e.target.tagName == "BUTTON") {
             modalOrder.firstElementChild.nextElementSibling.nextElementSibling.textContent = e.target.parentElement.previousElementSibling.previousElementSibling.firstElementChild.firstElementChild.nextElementSibling.textContent;
-            overlay.style.display = 'block';
-            modalOrder.style.display = 'block'; 
+            showModal(modalOrder); 
         }
-        document.body.style.overflow = 'hidden';
       });
-
 
             //закрывает модалку
-      overlay.addEventListener('click', (e) => { 
-          if (e.target && (e.target.classList.contains('modal__close'))) {
-                overlay.style.display = 'none';
-                e.target.parentElement.style.display = 'none';
-          } else if (e.target.classList.contains('overlay')) {
-              for (let i of e.target.children) {
-                overlay.style.display = 'none';
-                i.style.display = 'none'; 
-            }
-          }
-          document.body.style.overflow = '';
-      });
+    overlay.addEventListener('click', (e) => { 
+         if (e.target && (e.target === overlay || e.target.classList.contains('modal__close'))) { 
+            closeModal(modalThanks);
+            closeModal(modalOrder);
+            closeModal(modalConsultation);
+         }
+    });
 
       //modals validate
 
@@ -141,9 +133,56 @@ const promoWrapper = document.querySelector('.promo'),
         });
     }
 
-      validateForms('#consultation-form');
-      validateForms('#consultation form');
-      validateForms('#order form');
+    validateForms('#consultation-form');
+    validateForms('#consultation form');
+    validateForms('#order form');  
+
+    //mask input
+    $('input[name=phone]').mask("+7 (999) 999-99-99");
+
+    // отправка форм
+
+    const forms = document.querySelectorAll('.feed-form');
+
+    forms.forEach(form => {
+        postData(form);
+    });
+
+    function postData(form) {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const formData = new FormData(form);
+            let resultTest = false;
+
+            for(let [name, value] of formData) {
+                   if (value != '') {
+                       resultTest = true;
+                   } else {
+                       resultTest = false;
+                   }
+            }
+
+            if (resultTest == true) {
+                    fetch('mailer/smart.php', {
+                        method: 'POST',
+                        body: formData
+                    }).then(data => {
+                        showModal(modalThanks);
+                        modalOrder.style.display = 'none';
+                        modalConsultation.style.display = 'none';
+            
+                        let modalClose = setTimeout(function() {
+                            closeModal(modalThanks);
+                        }, 3000);
+                    }).catch(() => {
+
+                    }).finally(() => {
+                        form.reset();
+                    });
+                }
+            });    
+    }
 
 
 
