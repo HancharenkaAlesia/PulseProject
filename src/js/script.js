@@ -56,8 +56,8 @@ cardsWrapper.addEventListener('click', (e) => {
         e.target.parentElement.nextElementSibling.classList.add('card-item__details_active');
 
     } else if (e.target && e.target.tagName == "A" && e.target.classList.contains('card-item__back')) {
-        e.target.parentElement.parentElement.classList.remove('card-item__details_active');
-        e.target.parentElement.parentElement.previousElementSibling.classList.add('card-item__main_active');
+        e.target.parentElement.classList.remove('card-item__details_active');
+        e.target.parentElement.previousElementSibling.classList.add('card-item__main_active');
     }
 });
 
@@ -183,6 +183,30 @@ const promoWrapper = document.querySelector('.promo'),
                 }
             });    
     }
+
+    //scroll
+    const upBtn = document.querySelector('.up-btn');
+
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset >= 1100) {
+            upBtn.style.visibility = 'visible';
+            upBtn.style.opacity = '1';
+        }   else {
+            upBtn.style.visibility = 'hidden';
+            upBtn.style.opacity = '0';
+        }
+    });
+
+    upBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        const blockID = upBtn.getAttribute('href');
+
+        document.querySelector(blockID).scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+    });
 
 
 

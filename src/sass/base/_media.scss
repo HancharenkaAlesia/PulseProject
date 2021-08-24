@@ -253,4 +253,19 @@
             }
         }
     }
+    .modal {
+        width: 280px;
+        padding: 25px 20px 20px 20px;
+        .feed-form {
+            width: 255px;
+            .button {
+                font-size: 15px;
+            }
+        }
+        &__close {
+            top: -7px;
+            right: 5px;
+            font-size: 29px;
+        }
+    }
 }
